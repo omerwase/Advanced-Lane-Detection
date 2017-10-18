@@ -47,39 +47,25 @@ Similar to the undistorted chessboard image above, images from the car's camera 
 
 I experimented with gradient (both x and y), magnitude, direction, HLS, HSV and CIELAB thresholds. They were used seperately and in combination to determine the best thresholds for lane detection. The code for this, along with various results can be found in p4_advanced_lane_lines_prep (section 3).
 
-From my testing, I found CIELAB transformation and thresholding to produced the best results, which I couldn't improve upon by using other methods. The final thresholds used (based on 2 channels from CIELAB transform) can be found in p4_advanced_lane_lines_final (section 2). The binary image below shows the effects of this transform and threshold:
+From my testing, I found CIELAB transformation and thresholding to produced the best results, which I couldn't improve upon by using other methods. The final thresholds used (based on 2 channels from CIELAB transform) can be found in p4_advanced_lane_lines_final (section 2 final_binary()). The binary images below show the effects of this transform and threshold using various input images:
 
 ![alt text][image3]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for perspective transform can be found in p4_advanced_lane_lines_final (section 2 warp_image()). I started by warping an image of straight lanes and corrected the source and destination points such that the warped image contained almost parallel lane lines. The resulting image looked like this:
 
-```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
-```
+![alt text][image4]
 
-This resulted in the following source and destination points:
+Based on the following source and destination points:
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
+| 602, 445      | 320, 0        | 
+| 200, 720      | 320, 720      |
+| 1130, 720     | 960, 720      |
+| 682, 460      | 960, 0        |
 
-I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
-
-![alt text][image4]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
