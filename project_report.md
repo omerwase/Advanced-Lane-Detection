@@ -1,33 +1,28 @@
-## Writeup Template
+# SDC Project 4: Advanced Lane Finding
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Advanced Lane Finding Project**
-
-The goals / steps of this project are the following:
-
-* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-* Apply a distortion correction to raw images.
-* Use color transforms, gradients, etc., to create a thresholded binary image.
-* Apply a perspective transform to rectify binary image ("birds-eye view").
-* Detect lane pixels and fit to find the lane boundary.
-* Determine the curvature of the lane and vehicle position with respect to center.
-* Warp the detected lane boundaries back onto the original image.
-* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+### Project Outline:
+    1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+    2. Apply a distortion correction to raw images.
+    3. Use color transforms to create a thresholded binary image with lanes.
+    4. Apply a perspective transform to rectify binary image ("birds-eye view").
+    5. Detect lane pixels and fit to find the lane boundary.
+    6. Determine the curvature of the lane and vehicle position with respect to center.
+    7. Warp the detected lane boundaries back onto the original image.
+    8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[image1]: ./output_images/01_undistort.png "Undistorted"
+[image2]: ./output_images/01_undistort2.png "Undistorted"
+[image3]: ./output_images/02_binary.png "Binary"
+[image4]: ./output_images/03_warped.png "Warped"
+[image5]: ./output_images/04_window_search.png "Window Search"
+[image6]: ./output_images/05_lanes.png "Detected Lanes"
+[image7]: ./output_images/06_output.png "Unwarped Output"
+[image8]: ./output_images/07_final_test.png "Final Pipeline Test"
+[video1]: ./output_video.mp4 "Output Video"
 
-## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
+## [Rubric Points](https://review.udacity.com/#!/rubrics/571/view)
 
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
