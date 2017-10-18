@@ -47,7 +47,7 @@ Similar to the undistorted chessboard image above, images from the car's camera 
 
 I experimented with gradient (both x and y), magnitude, direction, HLS, HSV and CIELAB thresholds. They were used seperately and in combination to determine the best thresholds for lane detection. The code for this, along with various results can be found in p4_advanced_lane_lines_prep (section 3).
 
-From my testing, I found CIELAB transformation and thresholding to produced the best results, which I couldn't improve upon by using other methods. The final thresholds used (based on 2 channels from CIELAB transform) can be found in p4_advanced_lane_lines_final (section 2). The binary image below shown the effects of this transform and threshold:
+From my testing, I found CIELAB transformation and thresholding to produced the best results, which I couldn't improve upon by using other methods. The final thresholds used (based on 2 channels from CIELAB transform) can be found in p4_advanced_lane_lines_final (section 2). The binary image below shows the effects of this transform and threshold:
 
 ![alt text][image3]
 
