@@ -34,7 +34,7 @@ The code for camera calibration can be found in p4_advanced_lane_lines_prep (sec
 
 ![alt text][image1]
 
-### Pipeline (single images)
+### Pipeline
 
 #### 1. Provide an example of a distortion-corrected image.
 
@@ -80,9 +80,9 @@ The code to calculate the car's offset from the center of the lane can be found 
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-The image below demonsrates the full pipeline for lane detection: original image > undistortion > binary transform and threshold > bird's eye view transform > lane detection > unwarp back on to original image. The code for this can be found in p4_advanced_lane_lines_final (section 3).
+The image below demonstrates the full pipeline for lane detection: original image > undistortion > binary transform and threshold > bird's eye view transform > lane detection > unwarp back on to original image. The code for this can be found in p4_advanced_lane_lines_final (section 3).
 
-![alt text][image7]
+![alt text][image8]
 
 
 ---
@@ -99,11 +99,11 @@ Here's a [link to my video result](./output_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The most difficult part of this project was determining the gradient/color transform used to produce the binary image with lane lines. No one technique was sufficient to detect lane lines under varying conditions: lane color (yellow or white), road color, shadows, etc. I expected the gradient, magnitude and direction transforms to produce the best results; however, they were not as good as simply using CIELAB color transform. By combining two channels of CIELAB transform, I got the best binary results containing the lanes, and little else. Still I expect this is an area where the project could be improved, by using other forms of thresholding and transformation.
+The most difficult part of this project was determining the gradient/color transform used to produce the binary image with lane lines. No one technique was sufficient to detect lane lines under varying conditions: lane color (yellow or white), road color, shadows, etc. I expected the gradient, magnitude and direction transforms to produce the best results; however, they were not as good as simply using CIELAB color transform. By combining two channels of the CIELAB transform, I got the best binary results containing the lanes, and little else. Still I expect this is an area where the project could be improved, by using other forms of thresholding and transformation.
 
-I suspect my calculations for left and right lane curvature is off, due to incorrect meters/pixels ratios. However there are within the expected order of magnitude.
+I suspect my calculations for left and right lane curvature is off, due to incorrect meters/pixels ratios. However they are within the expected order of magnitude.
 
-Based on the output video, I noticed that movements in the car's camera positioning (ie car goes over a bump), creates undesired fluctuations in lane detection. Though not catastrophic, this is something that would need to be addressed for more accurate results. Furthermore I found shadows to still be an issue when looking for lane pixels. I suspect better color transformtion and thresholding could improve results in this regard.
+Based on the output video, I noticed that movements in the car's camera (ie car goes over a bump), creates undesired fluctuations in lane detection. Though not catastrophic, this is something that would need to be addressed for more accurate results. Furthermore I found shadows to still be an issue when looking for lane pixels. I suspect better color transformtion and thresholding could improve results in this regard.
 
 
 
