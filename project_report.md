@@ -10,6 +10,8 @@
 7. Warp the detected lane boundaries back onto the original image.
 8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
+**Note:** the code used in p4_advanced_lane_lines_prep and p4_advanced_lane_lines_final is adopted from the project lessons, or developed by myself.
+
 [//]: # (Image References)
 
 [image1]: ./output_images/01_undistort.png "Undistorted"
