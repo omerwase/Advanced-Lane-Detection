@@ -20,7 +20,6 @@
 [image6]: ./output_images/05_lanes.png "Detected Lanes"
 [image7]: ./output_images/06_output.png "Unwarped Output"
 [image8]: ./output_images/07_final_test.png "Final Pipeline Test"
-[video1]: ./output_video.mp4 "Output Video"
 
 
 ### Below the [rubric points](https://review.udacity.com/#!/rubrics/571/view) are discussed individually, along with their implementation in the project
@@ -69,19 +68,22 @@ Based on the following source and destination points:
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+To identify lane pixels I used a sliding window search, the code for which can be found in p4_advanced_lane_lines_final (section 2 window_search()). Pixels for the left and right lanes were determined seperately (based on midpoint), and were used to fit a 2nd order polynomial. The detected pixels, along with their search window, and fit lines can be seen in the image below:
 
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+The code to calculate lane curvature can be found in p4_advanced_lane_lines_final (section 2 real_lane_curvature()). This code is identical to the code provided in the lessons. It worked well for my purpose though I suspect my meter/pixel ratios might be off. 
+  
+The code to calculate the car's offset from the center of the lane can be found in p4_advanced_lane_lines_final (section 2 car_offset()). To calculate the offset, I subtract the lane's calculated center (based on fit lines) from the image center. Based on the output video, the offset calculation appears to be accurate.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+The image below demonsrates the full pipeline for lane detection: original image > undistortion > binary transform and threshold > bird's eye view transform > lane detection > unwarp back on to original image. The code for this can be found in p4_advanced_lane_lines_final (section 3).
 
-![alt text][image6]
+![alt text][image7]
+
 
 ---
 
@@ -89,7 +91,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_video.mp4)
 
 ---
 
@@ -97,4 +99,11 @@ Here's a [link to my video result](./project_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+The most difficult part of this project was determining the gradient/color transform used to produce the binary image with lane lines. No one technique was sufficient to detect lane lines under varying conditions: lane color (yellow or white), road color, shadows, etc. I expected the gradient, magnitude and direction transforms to produce the best results; however, they were not as good as simply using CIELAB color transform. By combining two channels of CIELAB transform, I got the best binary results containing the lanes, and little else. Still I expect this is an area where the project could be improved, by using other forms of thresholding and transformation.
+
+I suspect my calculations for left and right lane curvature is off, due to incorrect meters/pixels ratios. However there are within the expected order of magnitude.
+
+Based on the output video, I noticed that movements in the car's camera positioning (ie car goes over a bump), creates undesired fluctuations in lane detection. Though not catastrophic, this is something that would need to be addressed for more accurate results. Furthermore I found shadows to still be an issue when looking for lane pixels. I suspect better color transformtion and thresholding could improve results in this regard.
+
+
+
