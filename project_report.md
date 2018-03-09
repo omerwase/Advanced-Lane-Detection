@@ -1,4 +1,4 @@
-# SDC Project 4: Advanced Lane Finding
+# SDC Project 4: Advanced Lane Detection
 
 Detecting lane lines from a mounted self-driving car camera
 
